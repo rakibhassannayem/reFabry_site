@@ -13,19 +13,19 @@ export default function ProductCard({ product }) {
         <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
           <Link
             to={`/product/${product.id}`}
-            className="bg-white text-gray-800 px-4 py-2 rounded-full flex items-center gap-2 hover:bg-blue-500 hover:text-white transition-colors"
+            className="bg-white text-indigo-600 px-6 py-3 rounded-full flex items-center gap-2 hover:bg-indigo-600 hover:text-white transition-colors"
           >
             <Eye size={18} />
             View Details
           </Link>
         </div>
       </div>
-      <div className="p-5">
-        <h2 className="text-xl font-semibold mb-2 text-gray-800">{product.name}</h2>
-        <p className="text-gray-600 text-sm mb-4">{product.short_desc?.slice(0, 80)}...</p>
+      <div className="p-6">
+        <h2 className="text-2xl font-bold mb-3 text-indigo-800 hover:text-indigo-600 transition-colors">{product.name}</h2>
+        <p className="text-gray-600 text-sm mb-4 leading-relaxed">{product.short_desc?.slice(0, 80)}...</p>
         <div className="flex justify-between items-center">
-          <span className="text-2xl font-bold text-blue-600">৳{product.price}</span>
-          <button className="bg-blue-500 text-white px-4 py-2 rounded-full flex items-center gap-2 hover:bg-blue-600 transition-colors">
+          <span className="text-2xl font-bold text-emerald-600">৳{product.price}</span>
+          <button className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-full flex items-center gap-2 hover:from-indigo-700 hover:to-purple-700 transition-all duration-300">
             <ShoppingCart size={18} />
             Add to Cart
           </button>
