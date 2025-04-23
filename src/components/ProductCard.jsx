@@ -8,9 +8,9 @@ export default function ProductCard({ product }) {
         <img
           src={`https://admin.refabry.com/storage/product/${product.image}`}
           alt={product.name}
-          className="h-64 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          className="h-64 w-full object-cover transition-transform duration-300"
         />
-        <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
           <Link
             to={`/product/${product.id}`}
             className="bg-white text-indigo-600 px-6 py-3 rounded-full flex items-center gap-2 hover:bg-indigo-600 hover:text-white transition-colors"
