@@ -1,7 +1,21 @@
+import { Link } from 'react-router-dom';
+import { ShoppingBag } from 'lucide-react';
+
 export default function Navbar() {
   return (
-    <header className="bg-white shadow p-4">
-      <div className="container mx-auto text-xl font-bold text-gray-800">Product Display</div>
+    <header className="bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg">
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-2">
+            <ShoppingBag size={24} />
+            <span className="text-2xl font-bold">ReFabry</span>
+          </Link>
+          <nav className="flex items-center gap-6">
+            <Link to="/" className="hover:text-blue-200 transition">Home</Link>
+            <Link to="/products" className="hover:text-blue-200 transition">Products</Link>
+          </nav>
+        </div>
+      </div>
     </header>
   );
 }
