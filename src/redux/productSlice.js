@@ -1,9 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 export const fetchProducts = createAsyncThunk('product/fetchProducts', async () => {
-  const response = await axios.get('https://admin.refabry.com/api/all/product/get');
-  return response.data.data.data;
+  const response = await fetch('https://admin.refabry.com/api/all/product/get');
+  if (!response.ok) {
+    throw new Error('Failed to fetch products');
+  }
+  const data = await response.json();
+  return data.data.data;
 });
 
 const productSlice = createSlice({
