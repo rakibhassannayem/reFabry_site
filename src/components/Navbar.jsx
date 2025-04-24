@@ -12,7 +12,7 @@ export default function Navbar() {
           </Link>
           <nav className="flex items-center gap-6">
             <Link to="/" className="hover:text-blue-200 transition">Home</Link>
-            <Link to="/products" className="hover:text-blue-200 transition">Products</Link>
+            <Link to="/cart" className="hover:text-blue-200 transition">Cart</Link>
           </nav>
         </div>
       </div>
