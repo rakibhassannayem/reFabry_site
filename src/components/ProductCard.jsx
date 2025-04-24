@@ -2,12 +2,15 @@ import { Link } from 'react-router-dom';
 import { Eye, ShoppingCart } from 'lucide-react';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../redux/cartSlice';
+import { showToast } from '../utils/toast';
+
 
 export default function ProductCard({ product }) {
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
     dispatch(addToCart(product));
+    showToast('Added to cart!');
   };
 
   return (

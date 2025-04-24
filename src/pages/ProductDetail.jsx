@@ -2,6 +2,8 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { ShoppingCart } from 'lucide-react';
 import { addToCart } from '../redux/cartSlice';
+import { showToast } from '../utils/toast';
+
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -13,6 +15,7 @@ export default function ProductDetail() {
 
   const handleAddToCart = () => {
     dispatch(addToCart(product));
+    showToast('Added to cart!');
   };
 
   if (!product) {
