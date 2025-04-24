@@ -1,39 +1,56 @@
-import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { ShoppingCart } from 'lucide-react';
+import { addToCart } from '../redux/cartSlice';
 
-const ProductDetail = () => {
+export default function ProductDetail() {
   const { id } = useParams();
-  const { products } = useSelector(state => state.product);
-  const product = products.find(p => p.id === parseInt(id));
+  const dispatch = useDispatch();
+  
+  const product = useSelector(state => 
+    state.product.products.find(p => p.id === parseInt(id))
+  );
 
-  if (!product) return <p className="text-center mt-10 text-red-500">Product not found.</p>;
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
+  };
+
+  if (!product) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <div className="text-center">Loading...</div>
+      </div>
+    );
+  }
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-        <img
-          src={`https://admin.refabry.com/storage/product/${product.image}`}
-          alt={product.name}
-          className="w-full h-[500px] object-cover"
-        />
-        <div className="p-8">
-          <h2 className="text-4xl font-bold text-indigo-800 mb-4">{product.name}</h2>
-          <p className="text-gray-700 mt-4 text-lg leading-relaxed">{product.short_desc}</p>
-          <div className="mt-8 space-y-4">
-            <p className="text-3xl font-bold text-emerald-600">৳ {product.price}</p>
-            <p className="text-lg">
-              <span className="text-gray-600">Stock Available:</span>{' '}
-              <span className="font-medium text-indigo-700">{product.stock} units</span>
-            </p>
+    <div className="container mx-auto px-4 py-8">
+      <div className="grid md:grid-cols-2 gap-8">
+        <div className="rounded-xl overflow-hidden">
+          <img
+            src={`https://admin.refabry.com/storage/product/${product.image}`}
+            alt={product.name}
+            className="w-full h-[500px] object-cover"
+          />
+        </div>
+        
+        <div className="space-y-6">
+          <h1 className="text-4xl font-bold text-indigo-800">{product.name}</h1>
+          <p className="text-gray-600 leading-relaxed">{product.short_desc}</p>
+          
+          <div className="text-3xl font-bold text-emerald-600">
+            ৳{product.price}
           </div>
-          <button className="mt-8 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-full font-medium hover:from-indigo-700 hover:to-purple-700 transition-all duration-300">
+          
+          <button
+            onClick={handleAddToCart}
+            className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-full flex items-center gap-2 hover:from-indigo-700 hover:to-purple-700 transition-all duration-300"
+          >
+            <ShoppingCart size={20} />
             Add to Cart
           </button>
         </div>
       </div>
     </div>
   );
-};
-
-export default ProductDetail;
+}

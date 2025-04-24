@@ -1,10 +1,18 @@
 import { Link } from 'react-router-dom';
 import { Eye, ShoppingCart } from 'lucide-react';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../redux/cartSlice';
 
 export default function ProductCard({ product }) {
+  const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
+  };
+
   return (
     <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-      <div className="relative group">
+            <div className="relative group">
         <img
           src={`https://admin.refabry.com/storage/product/${product.image}`}
           alt={product.name}
@@ -25,7 +33,10 @@ export default function ProductCard({ product }) {
         <p className="text-gray-600 text-sm mb-4 leading-relaxed">{product.short_desc?.slice(0, 80)}...</p>
         <div className="flex justify-between items-center">
           <span className="text-2xl font-bold text-emerald-600">৳{product.price}</span>
-          <button className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-full flex items-center gap-2 hover:from-indigo-700 hover:to-purple-700 transition-all duration-300">
+          <button 
+            onClick={handleAddToCart}
+            className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-full flex items-center gap-2 hover:from-indigo-700 hover:to-purple-700 transition-all duration-300"
+          >
             <ShoppingCart size={18} />
             Add to Cart
           </button>
